@@ -1,10 +1,11 @@
 {
-  "name": "react-a11y-dialog",
-  "version": "4.1.0",
+  "name": "@allejo/react-a11y-dialog",
+  "version": "1.0.0",
   "description": "A React component wrapper around a11y-dialog.",
-  "homepage": "https://github.com/HugoGiraudel/react-a11y-dialog",
+  "homepage": "https://github.com/allejo/react-a11y-dialog",
   "license": "MIT",
   "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "keywords": [
     "modal",
     "dialog",
@@ -19,27 +20,32 @@
     "dist/index.js"
   ],
   "scripts": {
-    "lint": "standard index.js",
+    "compile:ts": "tsc",
+    "compile:babel": "babel build/index.jsx -o dist/index.js",
+    "prettify": "prettier --write *.{json,ts,tsx}",
     "prepublish": "npm run build",
-    "start": "babel index.js -o dist/index.js -w",
-    "build": "babel index.js -o dist/index.js"
+    "start": "babel build/index.js -o dist/index.js -w",
+    "build": "npm run compile:ts && npm run compile:babel"
   },
   "dependencies": {
     "a11y-dialog": "^5.2.0"
   },
   "devDependencies": {
+    "@types/a11y-dialog": "^5.2.0",
+    "@types/react": "^16.8.18",
+    "@types/react-dom": "^16.8.4",
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.0",
-    "standard": "^11.0.0"
+    "prettier": "^1.17.1",
+    "typescript": "^3.4.5"
   },
   "peerDependencies": {
-    "prop-types": "^15.6.0",
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/HugoGiraudel/react-a11y-dialog/"
+    "url": "https://github.com/allejo/react-a11y-dialog"
   }
 }

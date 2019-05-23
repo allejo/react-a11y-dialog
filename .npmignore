@@ -1,0 +1,9 @@
+.babelrc
+.editorconfig
+.idea/
+.prettierrc
+.travis.yml
+.vscode/
+build/
+index.tsx
+tsconfig.json
