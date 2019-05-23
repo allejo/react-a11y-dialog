@@ -164,7 +164,10 @@ Dialog.propTypes = {
   classNames: PropTypes.objectOf(PropTypes.string),
 
   // Whether to render a `<dialog>` element or a `<div>` element.
-  useDialog: PropTypes.bool
+  useDialog: PropTypes.bool,
+
+  // The content of the actual Dialog.
+  children: PropTypes.node
 }
 
 module.exports = Dialog

@@ -5,6 +5,7 @@
   "homepage": "https://github.com/HugoGiraudel/react-a11y-dialog",
   "license": "MIT",
   "main": "dist/index.js",
+  "typings": "index.d.ts",
   "keywords": [
     "modal",
     "dialog",
