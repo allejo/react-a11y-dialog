@@ -16,9 +16,6 @@
     "component"
   ],
   "author": "Hugo Giraudel (http://hugogiraudel.com)",
-  "files": [
-    "dist/index.js"
-  ],
   "scripts": {
     "compile:ts": "tsc",
     "compile:babel": "babel build/index.jsx -o dist/index.js",
