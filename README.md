@@ -13,7 +13,8 @@ npm install --save @allejo/react-a11y-dialog
 ## Example
 
 ```jsx
-const Dialog = require('react-a11y-dialog')
+import * as React from 'react';
+import { Dialog } from '@allejo/react-a11y-dialog';
 
 class MyComponent extends React.Component {
   handleClick = () => {
@@ -64,96 +65,4 @@ ReactDOM.render(
 
 ## API
 
-* **Property name**: `id`
-* **Type**: string
-* **Mandatory**: true
-* **Default value**: —
-* **Description**: The HTML `id` attribute of the dialog element, internally used by a11y-dialog to manipulate the dialog.
-
----
-
-* **Property name**: `title`
-* **Type**: string | element
-* **Mandatory**: true
-* **Default value**: —
-* **Description**: The title of the dialog, mandatory in the document to provide context to assistive technology. Could be [hidden with CSS](https://hugogiraudel.com/2016/10/13/css-hide-and-seek/) (while remaining accessible).
-
----
-
-* **Property name**: `dialogRef`
-* **Type**: function
-* **Mandatory**: false
-* **Default value**: no-op
-* **Description**: A function called when the component has mounted, receiving the [instance of A11yDialog](http://edenspiekermann.github.io/a11y-dialog/#js-api) so that it can be programmatically accessed later on.
-
----
-
-* **Property name**: `appRoot`
-* **Type**: string | string[]
-* **Mandatory**: true
-* **Default value**: —
-* **Description**: The [selector(s) a11y-dialog need](http://edenspiekermann.github.io/a11y-dialog/#javascript-instantiation) to disable when the dialog is open.
-
----
-
-* **Property name**: `dialogRoot`
-* **Type**: string
-* **Mandatory**: true
-* **Default value**: —
-* **Description**: The container for the dialog to be rendered into ([React portal](https://reactjs.org/docs/portals.html)’s root).
-
----
-
-* **Property name**: `onClose`
-* **Type**: function
-* **Mandatory**: false
-* **Default value**: no-op
-* **Description**: A callback function that is called when the dialog is closed.
-
----
-
-* **Property name**: `titleId`
-* **Type**: string
-* **Mandatory**: false
-* **Default value**: `${this.props.id}-title`
-* **Description**: The HTML `id` attribute of the dialog’s title element, used by assistive technologies to provide context and meaning to the dialog window.
-
----
-
-* **Property name**: `closeButtonLabel`
-* **Type**: string
-* **Mandatory**: false
-* **Default value**: "Close this dialog window"
-* **Description**:  The HTML `aria-label` attribute of the close button, used by assistive technologies to provide extra meaning to the usual cross-mark.
-
----
-
-* **Property name**: `closeButtonContent`
-* **Type**: string | element
-* **Mandatory**: false
-* **Default value**: `\u00D7` (×)
-* **Description**: The string that is the inner HTML of the close button.
-
----
-
-* **Property name**: `classNames`
-* **Type**: object
-* **Mandatory**: false
-* **Default value**: {}
-* **Description**: Object of classes for each HTML element of the dialog element. Keys are: `base`, `overlay`, `element`, `document`, `title`, `closeButton`. See [a11y-dialog docs](http://edenspiekermann.github.io/a11y-dialog/#expected-dom-structure) for reference.
-
----
-
-* **Property name**: `useDialog`
-* **Type**: boolean
-* **Mandatory**: false
-* **Default value**: `true`
-* **Description**: Whether to render a `<dialog>` element or a `<div>` element.
-
----
-
-* **Property name**: `role`
-* **Type**: string
-* **Mandatory**: false
-* **Default value**: `dialog`
-* **Description**: The `role` attribute of the dialog element, either `dialog` (default) or `alertdialog` to make it a modal (preventing closing on click outside of <kbd>ESC</kbd> key).
+Take a look at the `Props` interface in the [`index.tsx`](./index.tsx) for all of the available props and their relevant documentation.
