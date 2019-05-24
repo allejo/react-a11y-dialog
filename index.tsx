@@ -61,12 +61,14 @@ interface Props {
    * This prop can be one or more selector which will be passed to a11y-dialog
    * constructor.
    */
-  appRoot: string;
+  appRoot: Element | NodeList | string;
 
   /**
    * React 16 requires a container for the portal’s content to be rendered
    * into; this is required and needs to be an existing valid DOM node,
    * adjacent to the React root container of the application.
+   *
+   * @see https://reactjs.org/docs/portals.html
    */
   dialogRoot: string;
 
