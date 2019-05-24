@@ -20,7 +20,7 @@
     "compile:ts": "tsc",
     "compile:babel": "babel build/index.jsx -o dist/index.js",
     "prettify": "prettier --write *.{json,ts,tsx}",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "start": "babel build/index.js -o dist/index.js -w",
     "build": "npm run compile:ts && npm run compile:babel"
   },
