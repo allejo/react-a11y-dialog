@@ -1,115 +1,31 @@
 # React A11yDialog
 
-react-a11y-dialog is a React component for [a11y-dialog](https://github.com/edenspiekermann/a11y-dialog) relying on [React portals](https://reactjs.org/docs/portals.html) to ease the use of accessible dialog windows in React applications.
+react-a11y-dialog is a React component for [a11y-dialog](https://github.com/edenspiekermann/a11y-dialog) relying on [React portals](https://reactjs.org/docs/portals.html) to ease the use of accessible dialog windows in React applications. This component does not render anything on the server, and waits for the client bundle to kick in to render the dialog through the React portal.
 
-*Note: for React versions **before** 16, use `react-a11y-dialog@2.0.0`.*
+This is a fork of [Hugo Giraudel's](https://github.com/HugoGiraudel/react-a11y-dialog) project ported over to TypeScript and includes any minor changes/improvements I needed. Version 1.0.0 of this project is the equivalent of what would be react-a11y-dialog 4.1.1, meaning this project can be a drop in replacement.
+
+## Changes in this Fork
+
+- Includes TypeScript definition file
+- Added new `onClose()` callback to the `Dialog` component to allow for notifications of when a dialog was closed.
 
 ## Install
 
 ```
-npm install --save react-a11y-dialog
+npm install --save @allejo/react-a11y-dialog
 ```
-
-## API
-
-* **Property name**: `id`
-* **Type**: string
-* **Mandatory**: true
-* **Default value**: —
-* **Description**: The HTML `id` attribute of the dialog element, internally used by a11y-dialog to manipulate the dialog.
-
----
-
-* **Property name**: `title`
-* **Type**: string | element
-* **Mandatory**: true
-* **Default value**: —
-* **Description**: The title of the dialog, mandatory in the document to provide context to assistive technology. Could be [hidden with CSS](https://hugogiraudel.com/2016/10/13/css-hide-and-seek/) (while remaining accessible).
-
----
-
-* **Property name**: `dialogRef`
-* **Type**: function
-* **Mandatory**: false
-* **Default value**: no-op
-* **Description**: A function called when the component has mounted, receiving the [instance of A11yDialog](http://edenspiekermann.github.io/a11y-dialog/#js-api) so that it can be programmatically accessed later on.
-
----
-
-* **Property name**: `appRoot`
-* **Type**: string | string[]
-* **Mandatory**: true
-* **Default value**: —
-* **Description**: The [selector(s) a11y-dialog need](http://edenspiekermann.github.io/a11y-dialog/#javascript-instantiation) to disable when the dialog is open.
-
----
-
-* **Property name**: `dialogRoot`
-* **Type**: string
-* **Mandatory**: true
-* **Default value**: —
-* **Description**: The container for the dialog to be rendered into ([React portal](https://reactjs.org/docs/portals.html)’s root).
-
----
-
-* **Property name**: `titleId`
-* **Type**: string
-* **Mandatory**: false
-* **Default value**: `${this.props.id}-title`
-* **Description**: The HTML `id` attribute of the dialog’s title element, used by assistive technologies to provide context and meaning to the dialog window.
-
----
-
-* **Property name**: `closeButtonLabel`
-* **Type**: string
-* **Mandatory**: false
-* **Default value**: “Close this dialog window”
-* **Description**:  The HTML `aria-label` attribute of the close button, used by assistive technologies to provide extra meaning to the usual cross-mark.
-
----
-
-* **Property name**: `closeButtonContent`
-* **Type**: string | element
-* **Mandatory**: false
-* **Default value**: `\u00D7` (×)
-* **Description**: The string that is the inner HTML of the close button.
-
----
-
-* **Property name**: `classNames`
-* **Type**: object
-* **Mandatory**: false
-* **Default value**: {}
-* **Description**: Object of classes for each HTML element of the dialog element. Keys are: `base`, `overlay`, `element`, `document`, `title`, `closeButton`. See [a11y-dialog docs](http://edenspiekermann.github.io/a11y-dialog/#expected-dom-structure) for reference.
-
----
-
-* **Property name**: `useDialog`
-* **Type**: boolean
-* **Mandatory**: false
-* **Default value**: `true`
-* **Description**: Whether to render a `<dialog>` element or a `<div>` element.
-
----
-
-* **Property name**: `role`
-* **Type**: string
-* **Mandatory**: false
-* **Default value**: `dialog`
-* **Description**: The `role` attribute of the dialog element, either `dialog` (default) or `alertdialog` to make it a modal (preventing closing on click outside of <kbd>ESC</kbd> key).
-
-## Server-side rendering
-
-react-a11y-dialog does not render anything on the server, and waits for the client bundle to kick in to render the dialog through the React portal.
 
 ## Example
 
 ```jsx
-const Dialog = require('react-a11y-dialog')
+import * as React from 'react';
+import { Dialog, A11yDialog } from '@allejo/react-a11y-dialog';
 
 class MyComponent extends React.Component {
+  private dialog?: A11yDialog;
+
   handleClick = () => {
-    this.dialog.show()
+    this.dialog && this.dialog.show()
   }
 
   render () {
@@ -119,11 +35,14 @@ class MyComponent extends React.Component {
           Open the dialog
         </button>
 
-        <Dialog id="my-accessible-dialog"
-                appRoot="#main"
-                dialogRoot="#dialog-root"
-                dialogRef={(dialog) => (this.dialog = dialog)}
-                title="The dialog title">
+        <Dialog
+          id="my-accessible-dialog"
+          appRoot="#main"
+          dialogRoot="#dialog-root"
+          dialogRef={(dialog) => (this.dialog = dialog)}
+          title="The dialog title"
+          onClose={() => console.log('I was closed!')}
+        >
           <p>Some content for the dialog.</p>
         </Dialog>
       </div>
@@ -150,3 +69,7 @@ ReactDOM.render(
   </body>
 </html>
 ```
+
+## API
+
+Take a look at the `Props` interface in the [`index.tsx`](./index.tsx) for all of the available props and their relevant documentation.
