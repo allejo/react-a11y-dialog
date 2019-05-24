@@ -208,3 +208,7 @@ export class Dialog extends React.Component<Props, State> {
     );
   }
 }
+
+export {
+  A11yDialog,
+}

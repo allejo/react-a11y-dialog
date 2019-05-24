@@ -25,10 +25,10 @@
     "build": "npm run compile:ts && npm run compile:babel"
   },
   "dependencies": {
+    "@types/a11y-dialog": "^5.2.0",
     "a11y-dialog": "^5.2.0"
   },
   "devDependencies": {
-    "@types/a11y-dialog": "^5.2.0",
     "@types/react": "^16.8.18",
     "@types/react-dom": "^16.8.4",
     "babel-cli": "^6.26.0",
