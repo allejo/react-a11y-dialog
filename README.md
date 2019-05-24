@@ -1,13 +1,65 @@
 # React A11yDialog
 
-react-a11y-dialog is a React component for [a11y-dialog](https://github.com/edenspiekermann/a11y-dialog) relying on [React portals](https://reactjs.org/docs/portals.html) to ease the use of accessible dialog windows in React applications.
+react-a11y-dialog is a React component for [a11y-dialog](https://github.com/edenspiekermann/a11y-dialog) relying on [React portals](https://reactjs.org/docs/portals.html) to ease the use of accessible dialog windows in React applications. This component does not render anything on the server, and waits for the client bundle to kick in to render the dialog through the React portal.
 
-*Note: for React versions **before** 16, use `react-a11y-dialog@2.0.0`.*
+This is a fork of [Hugo Giraudel's](https://github.com/HugoGiraudel/react-a11y-dialog) project ported over to TypeScript and includes any minor changes/improvements I needed.
 
 ## Install
 
 ```
-npm install --save react-a11y-dialog
+npm install --save @allejo/react-a11y-dialog
+```
+
+## Example
+
+```jsx
+const Dialog = require('react-a11y-dialog')
+
+class MyComponent extends React.Component {
+  handleClick = () => {
+    this.dialog.show()
+  }
+
+  render () {
+    return (
+      <div>
+        <button type="button" onClick={this.handleClick}>
+          Open the dialog
+        </button>
+
+        <Dialog
+          id="my-accessible-dialog"
+          appRoot="#main"
+          dialogRoot="#dialog-root"
+          dialogRef={(dialog) => (this.dialog = dialog)}
+          title="The dialog title"
+          onClose={() => console.log('I was closed!')}
+        >
+          <p>Some content for the dialog.</p>
+        </Dialog>
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(
+  <MyComponent />,
+  document.getElementById('main')
+)
+```
+
+```html
+<!doctype html>
+<html lang="en">
+  <body>
+    <div id="main">
+      <!-- Container in which the entire React application is rendered. -->
+    </div>
+    <div id="dialog-root">
+      <!-- Container in which dialogs are rendered through a React portal. -->
+    </div>
+  </body>
+</html>
 ```
 
 ## API
@@ -52,6 +104,14 @@ npm install --save react-a11y-dialog
 
 ---
 
+* **Property name**: `onClose`
+* **Type**: function
+* **Mandatory**: false
+* **Default value**: no-op
+* **Description**: A callback function that is called when the dialog is closed.
+
+---
+
 * **Property name**: `titleId`
 * **Type**: string
 * **Mandatory**: false
@@ -63,7 +123,7 @@ npm install --save react-a11y-dialog
 * **Property name**: `closeButtonLabel`
 * **Type**: string
 * **Mandatory**: false
-* **Default value**: “Close this dialog window”
+* **Default value**: "Close this dialog window"
 * **Description**:  The HTML `aria-label` attribute of the close button, used by assistive technologies to provide extra meaning to the usual cross-mark.
 
 ---
@@ -97,56 +157,3 @@ npm install --save react-a11y-dialog
 * **Mandatory**: false
 * **Default value**: `dialog`
 * **Description**: The `role` attribute of the dialog element, either `dialog` (default) or `alertdialog` to make it a modal (preventing closing on click outside of <kbd>ESC</kbd> key).
-
-## Server-side rendering
-
-react-a11y-dialog does not render anything on the server, and waits for the client bundle to kick in to render the dialog through the React portal.
-
-## Example
-
-```jsx
-const Dialog = require('react-a11y-dialog')
-
-class MyComponent extends React.Component {
-  handleClick = () => {
-    this.dialog.show()
-  }
-
-  render () {
-    return (
-      <div>
-        <button type="button" onClick={this.handleClick}>
-          Open the dialog
-        </button>
-
-        <Dialog id="my-accessible-dialog"
-                appRoot="#main"
-                dialogRoot="#dialog-root"
-                dialogRef={(dialog) => (this.dialog = dialog)}
-                title="The dialog title">
-          <p>Some content for the dialog.</p>
-        </Dialog>
-      </div>
-    )
-  }
-}
-
-ReactDOM.render(
-  <MyComponent />,
-  document.getElementById('main')
-)
-```
-
-```html
-<!doctype html>
-<html lang="en">
-  <body>
-    <div id="main">
-      <!-- Container in which the entire React application is rendered. -->
-    </div>
-    <div id="dialog-root">
-      <!-- Container in which dialogs are rendered through a React portal. -->
-    </div>
-  </body>
-</html>
-```
