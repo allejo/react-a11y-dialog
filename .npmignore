@@ -7,3 +7,4 @@
 build/
 index.tsx
 tsconfig.json
+*.tgz
