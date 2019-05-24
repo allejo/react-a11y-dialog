@@ -2,7 +2,12 @@
 
 react-a11y-dialog is a React component for [a11y-dialog](https://github.com/edenspiekermann/a11y-dialog) relying on [React portals](https://reactjs.org/docs/portals.html) to ease the use of accessible dialog windows in React applications. This component does not render anything on the server, and waits for the client bundle to kick in to render the dialog through the React portal.
 
-This is a fork of [Hugo Giraudel's](https://github.com/HugoGiraudel/react-a11y-dialog) project ported over to TypeScript and includes any minor changes/improvements I needed.
+This is a fork of [Hugo Giraudel's](https://github.com/HugoGiraudel/react-a11y-dialog) project ported over to TypeScript and includes any minor changes/improvements I needed. Version 1.0.0 of this project is the equivalent of what would be react-a11y-dialog 4.1.1, meaning this project can be a drop in replacement.
+
+## Changes in this Fork
+
+- Includes TypeScript definition file
+- Added new `onClose()` callback to the `Dialog` component to allow for notifications of when a dialog was closed.
 
 ## Install
 
