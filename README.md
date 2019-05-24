@@ -19,11 +19,13 @@ npm install --save @allejo/react-a11y-dialog
 
 ```jsx
 import * as React from 'react';
-import { Dialog } from '@allejo/react-a11y-dialog';
+import { Dialog, A11yDialog } from '@allejo/react-a11y-dialog';
 
 class MyComponent extends React.Component {
+  private dialog?: A11yDialog;
+
   handleClick = () => {
-    this.dialog.show()
+    this.dialog && this.dialog.show()
   }
 
   render () {
